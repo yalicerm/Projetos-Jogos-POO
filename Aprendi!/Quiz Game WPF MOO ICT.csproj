@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows7.0</TargetFramework>
+    <RootNamespace>Quiz_Game_WPF_MOO_ICT</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\buttonRestart.png" />
+    <None Remove="Assets\buttonSkip.png" />
+    <None Remove="Assets\buttonSkipBlock.png" />
+    <None Remove="background.png" />
+    <None Remove="buttonStart.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\background.png" />
+    <Resource Include="Assets\buttonRestart.png" />
+    <Resource Include="Assets\buttonSkip.png" />
+    <Resource Include="Assets\buttonSkipBlock.png" />
+    <Resource Include="Assets\menu.png" />
+    <Resource Include="Assets\buttonStart.png" />
+  </ItemGroup>
+
+</Project>

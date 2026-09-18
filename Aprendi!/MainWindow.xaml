@@ -1,0 +1,202 @@
+﻿<Window x:Class="Quiz_Game_WPF_MOO_ICT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quiz_Game_WPF_MOO_ICT"
+        mc:Ignorable="d"
+        Title="Simple Quiz Game WPF MOO ICT" Height="600" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="249*"/>
+            <RowDefinition Height="335*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Define o menu do jogo. O único que inicia com visibilidade visível, pois é a tela inicial -->
+        <Canvas x:Name="Menu" Visibility="Visible" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+            <Canvas.Background>
+                <ImageBrush ImageSource="Assets/menu.png" Stretch="None"/>
+                <!-- Background do menu -->
+            </Canvas.Background>
+
+            <Button x:Name="buttonStart" Content="" Width="195" Height="78" 
+                Canvas.Left="300" Canvas.Top="343" Click="buttonStart_Click" 
+                Cursor="Hand" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/buttonStart.png" Stretch="Uniform" TileMode="None"/>
+                </Button.Background>
+
+                <Button.Template>
+                    <!-- Define o template do botão para que ele não tenha bordas e apenas exiba a imagem de fundo -->
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBox Canvas.Left="239" TextWrapping="Wrap" Text="Copyright © 2026 Divas Lindas Ltda. Todos os direitos reservados" Canvas.Top="539" Width="317" TextChanged="TextBox_TextChanged" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="10"/>
+        </Canvas>
+
+
+        <!-- Define o "modelo" visual do jogo -->
+        <Canvas Name="Jogo" Visibility="Collapsed" Height="600" Width="800" Grid.ColumnSpan="2" Margin="0,0,0,-16" Grid.RowSpan="2">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Assets/background.png"/>
+                <!-- Background do jogo -->
+            </Canvas.Background>
+
+            <Label Name="questionText" FontSize="20" Canvas.Left="345" Canvas.Top="16" 
+                   HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Century Gothic" 
+                   Foreground="#FFFAD75F" Background="{x:Null}" FontWeight="Bold">Questão 1
+            </Label>
+            <!-- Label que exibe o número da questão atual -->
+
+            <TextBlock Name="txtQuestion" TextAlignment="Center" Padding="3" FontSize="28" 
+                       Width="572" TextWrapping="Wrap" Canvas.Left="114" Canvas.Top="117" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Century Gothic" 
+                       FontWeight="Bold" Foreground="White">
+            Hello word.
+            </TextBlock>
+            <!-- TextBlock que exibe a pergunta atual -->
+
+            <Button Click="checkAnswer" Name="ans1" Width="300" Height="50" Content="Answer 1" 
+                    Tag="0" Canvas.Left="61" Canvas.Top="352" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" BorderBrush="{x:Null}" Background="#FFFAD75F" 
+                    Foreground="#FF960FBD" FontFamily="Century Gothic" FontWeight="Bold" Cursor="Hand">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <!-- Botão que representa a primeira resposta da pergunta atual -->
+
+
+            <Button Click="checkAnswer" Name="ans2" Width="300" Height="50" Content="Answer 2" 
+                    Tag="0" Canvas.Left="61" Canvas.Top="443" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" BorderBrush="{x:Null}" Foreground="#FF960FBD" 
+                    FontWeight="Bold" Background="#FFFAD75F" Cursor="Hand">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <!-- Botão que representa a segunda resposta da pergunta atual -->
+
+            <Button Click="checkAnswer" Name="ans3" Width="300" Height="50" Content="Answer 3" 
+                    Tag="0" Canvas.Left="433" Canvas.Top="352" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" BorderBrush="{x:Null}" Foreground="#FF960FBD" 
+                    Background="#FFFAD75F" FontWeight="Bold" Cursor="Hand">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <!-- Botão que representa a terceira resposta da pergunta atual -->
+
+            <Button Click="checkAnswer" Name="ans4" Width="300" Height="50" Content="Answer 4" Tag="0" 
+                    Canvas.Left="433" Canvas.Top="443" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    BorderBrush="{x:Null}" Background="#FFFAD75F" Foreground="#FF960FBD" FontWeight="Bold" 
+                    Cursor="Hand">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <!-- Botão que representa a quarta resposta da pergunta atual -->
+
+            <Label x:Name="time" FontSize="20" Canvas.Right="10" Canvas.Top="16" HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" FontFamily="Century Gothic" Foreground="#FFFAD75F" 
+                   Content="10s" RenderTransformOrigin="-7.61,0.667" Canvas.Left="16" FontWeight="Bold"/>
+            <!-- Label que exibe o tempo restante para responder a pergunta atual -->
+
+            <Button Name="buttonSkip" Content="" FontSize="16" Width="94" Height="39" Canvas.Left="692" 
+                    Canvas.Top="14" Foreground="{x:Null}" FontWeight="Bold" BorderBrush="{x:Null}" 
+                    Click="buttonSkip_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" >
+
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/buttonSkip.png"/>
+                </Button.Background>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <!-- Botão para pular a pergunta atual -->
+        </Canvas>
+
+
+        <!-- Define a tela de fim de jogo -->
+        <Canvas Name="FimDeJogo" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Assets/background.png"/>
+            </Canvas.Background>
+
+            <TextBlock Name="FimJogo" Text="FIM DE JOGO" FontSize="72" FontWeight="Bold" Foreground="#FFFAD75F" 
+                   Canvas.Left="168" Canvas.Top="144" FontFamily="Century Gothic" 
+                       HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <!-- TextBlock que exibe a mensagem de fim de jogo -->
+
+            <TextBlock Name="txtPontuacaoFinal" Text="0/10" FontSize="30" Foreground="#FFFAD75F" 
+                   Canvas.Left="368" Canvas.Top="237" FontFamily="Century Gothic" 
+                       HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"/>
+            <!-- TextBlock que exibe a pontuação final -->
+
+            <Button Name="buttonRestart" Content="" FontSize="20" Width="340" Height="96" 
+                Canvas.Left="230" Canvas.Top="328" Click="buttonRestart_Click" 
+                    HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="{x:Null}" 
+                    Foreground="{x:Null}" Cursor="Hand">
+
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/buttonRestart.png"/>
+                </Button.Background>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <!-- Botão para reiniciar o jogo -->
+
+        </Canvas>
+    </Grid>
+
+
+</Window>
